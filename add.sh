@@ -42,7 +42,6 @@ done
 for i in "${themes[@]}"
 do
 	cd $directory$target_repo
-	out=$(git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | grep $i)
 	if git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | grep $i;
 	then
 		echo "Pull request has started"
