@@ -5,22 +5,27 @@ target_url='git@bitbucket.org:rahulniyer/' 			#LINK OF REPO ON WHICH THERE WILL 
 target_repo='news-corp-india-rahul'								#REPO ON WHICH THERE WILL BE SUB DIRECTORIES
 target_branch='develop'
 directory=$HOME'/work/projects/'							#DIRECTORY WHERE THE repository will be downloaded and worked upon
-										
+plugin_source_branch='master'	 	#WHICH BRANCH TO FETCH from
+theme_source_branch='develop'	 	#WHICH BRANCH TO FETCH from
+								
 plugins=( nc-career nc-ext-syndication nc-post-clusters nc-remote-taxonomy nc-sponsor)
 themes=( ncindia-core ncindia-child-vcc )
 
-plugin_source_branch='master'	 	#WHICH BRANCH TO FETCH from
-for i in "${plugins[@]}"
-do
-	if [ -d $directory$target_repo ]
+
+if [ -d $directory$target_repo ]
 	then
 		echo "directory already present hence!"
 	else
 		cd $directory
 		echo "directory not present!!! getting required respository"
 		git clone $target_url$target_repo
-	fi
+fi
 
+cd $target_repo
+git checkout $target_branch
+
+for i in "${plugins[@]}"
+do
 	cd $directory$target_repo
 	if git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | grep $i;	
 	then
@@ -33,20 +38,9 @@ do
 
 done
 
-git checkout $target_branch
 
-theme_source_branch='develop'	 	#WHICH BRANCH TO FETCH from
 for i in "${themes[@]}"
 do
-	if [ -d $directory$target_repo ]
-	then
-		echo "directory already present hence!"
-	else
-		cd $directory
-		echo "directory not present!!! getting required respository"
-		git clone $target_url$target_repo
-	fi
-
 	cd $directory$target_repo
 	out=$(git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | grep $i)
 	if git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | grep $i;
