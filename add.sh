@@ -1,8 +1,8 @@
 #!/bin/sh
 ##### PLEASE ENTER RELEVANT CONFIG DETAILS #########
-source_url='git@bitbucket.org:mmvplproducts/'				#LINK OF REPO ON FROM WHICH RESPOSITORIES WILL BE FETCHED TO USE AS SUB DIRECTORY
+source_url='git@bitbucket.org:rahulniyer/'				#LINK OF REPO ON FROM WHICH RESPOSITORIES WILL BE FETCHED TO USE AS SUB DIRECTORY
 target_url='git@bitbucket.org:rahulniyer/' 			#LINK OF REPO ON WHICH THERE WILL BE SUB DIRECTORIES
-target_repo='news-corp-india-rahul'								#REPO ON WHICH THERE WILL BE SUB DIRECTORIES
+target_repo='any_repo'								#REPO ON WHICH THERE WILL BE SUB DIRECTORIES
 target_branch='develop'
 directory=$HOME'/work/projects/'							#DIRECTORY WHERE THE repository will be downloaded and worked upon
 plugin_source_branch='master'	 	#WHICH BRANCH TO FETCH from
